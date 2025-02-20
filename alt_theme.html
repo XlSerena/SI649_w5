@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <a href="https://scmcqueen.github.io/si649_hw/movies_demo.csv">Download Data</a>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"title": {"fontSize": 22, "font": "Montserrat", "anchor": "middle", "color": "#264653", "offset": 20, "subtitleFontSize": 20}, "axis": {"titleFontSize": 18, "labelFontSize": 14, "grid": false, "domainColor": "#2A9D8F", "tickColor": "#E76F51"}, "legend": {"titleFontSize": 16, "labelFontSize": 14, "orient": "right"}, "view": {"stroke": "transparent"}, "mark": {"color": "#FF5733"}, "range": {"category": ["#FF5733", "#FDCB58", "#17B978", "#0081A7"], "heatmap": ["#FDCB58", "#FF5733", "#C70039"], "diverging": ["#E63946", "#457B9D", "#2A9D8F"]}}, "layer": [{"mark": {"type": "bar"}, "encoding": {"color": {"field": "percentage", "legend": {"title": "Percent of Responder", "values": [0.2, 0.4]}, "scale": {"domain": [0.2, 0.3, 0.4]}, "type": "quantitative"}, "x": {"field": "percentage", "title": null, "type": "quantitative"}, "y": {"field": "shooter", "title": null, "type": "nominal"}}, "title": "Who Shot First?"}, {"mark": {"type": "text", "align": "right", "dx": -5}, "encoding": {"color": {"value": "white"}, "text": {"field": "percentage", "format": ".1%", "type": "quantitative"}, "x": {"field": "percentage", "type": "quantitative"}, "y": {"field": "shooter", "type": "nominal"}}}], "data": {"name": "data-fd7d7f37a6003bc4d425b12059579d29"}, "height": 100, "width": 300, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-fd7d7f37a6003bc4d425b12059579d29": [{"shooter": "Greedo", "count": 197, "percentage": 0.23792270531400966}, {"shooter": "Han", "count": 325, "percentage": 0.392512077294686}, {"shooter": "I don't understand this question", "count": 306, "percentage": 0.3695652173913043}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
